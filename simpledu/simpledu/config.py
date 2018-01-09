@@ -1,5 +1,5 @@
 # 存放配置
-class BaseConfig(boject):
+class BaseConfig(object):
     """配置基类"""
     SECRET_KEY = "makesure to set a very secret key"
 

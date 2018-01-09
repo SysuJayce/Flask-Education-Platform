@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!-- lang 规定元素内容的语言 -->
+    <head>
+        <meta charset="UTF-8">
+        <!-- meta 提供有关页面的元信息 -->
+        <title>{% block title %}{% endblock %}</title>
+        <!-- block 拥有可继承属性，使用 block 将页面划分为不同的区块 -->
+        <link rel="stylesheet" href="static/main.css">
+        <!-- rel 规定当前文档和被链接文档之间的关系 -->
+    </head>
+
+    <body>
+        {% block body %}{% endblock %}
+        {% block footer %}{% endblock %}
+        <script src="static/main.js"></script>
+    </body>
+</html>
+

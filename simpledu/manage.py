@@ -1,4 +1,4 @@
-from simpleud.app import create_app
+from simpledu.app import create_app
 
 # 使用开发环境配置
 app = create_app('development')

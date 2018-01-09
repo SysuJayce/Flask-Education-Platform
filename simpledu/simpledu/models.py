@@ -7,7 +7,7 @@ db = SQLAlchemy()  # 此处不再传入 app,此处的 app 还没有进行定义
 
 
 class User(db.Model):
-    __tablename__ == 'user'
+    __tablename__ = 'user'
         
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), unique=True, index=True, nullable=False)  # unique表示该值需要独一无二；index添加之后便于提高运行速度；nullableb表示该值不为空
