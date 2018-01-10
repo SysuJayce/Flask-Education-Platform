@@ -3,6 +3,7 @@
 from flask import Flask
 from simpledu.config import configs
 from simpledu.models import db
+from flask_migrate import Migrate
 
 def register_blueprints(app):
     from .handlers import front,course,admin
@@ -16,5 +17,6 @@ def create_app(config):
     app = Flask(__name__)
     app.config.from_object(configs.get(config))
     db.init_app(app)  # SQLAlchemy 的初始化方式改为使用 init_app，使用此将 app 传入db
+    Migrate(app, db)  # 将 Migrate 注册到了 app 和 数据库上
     register_blueprints(app)
     return app

@@ -1,0 +1,5 @@
+.form {
+    /* 链接到 login/register.html 的 form 类中 */
+    width: 400px;
+    margin: 0 auto;
+}

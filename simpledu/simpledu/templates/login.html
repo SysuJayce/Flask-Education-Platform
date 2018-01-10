@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block body %}
+<h2>登录</h2>
+<!-- 要在form 中指定POST方法和点击提交之后需要请求的url -->
+<div class="form">
+ <form method="POST" action="{{ url_for('front.login')}}">
+<!-- action:规定提交表单时向何处发送数据 -->
+    {{ form.csrf_token }}
+    <!-- flask-wtf 帮我们在表单类中添加了 csrf_token,我们只需要简单的渲染，渲染后会在 html 页面生成一个隐藏于，里面是 csrf_token 值 -->
+    <div class="form-group">
+    <!-- 使用 Bootstrap 的表单样式渲染每个表单项 -->
+    <!--首先渲染 field label -->
+    <!-- 接着渲染 field,StringField 渲染后会生成一个 </input> 标签，filed 里面可以传入 html 的标签属性，这些属性会渲染到生成的 html 标签中 -->
+    {{ form.email.label }} {{ form.email(class='form-control')}}
+    </div>
+
+    <div class="form-group">
+        {{ form.password.label }} {{form.password(class="form-control")}}
+    </div>
+
+    <div class="checkbox">
+    <!-- BooleanField 的渲染比较特殊，使用了 Bootstrap 的 checkbox 类 -->
+        <label>
+            {{ form.remember_me() }}
+            <!-- 渲染的是 label 的 text 属性 -->
+            {{ form.remember_me.label.text}}
+        </label>
+    </div>
+    {{ form.submit(class="btn btn-primary")}}
+    <!-- 渲染提交按钮，传入 Bootstrap 的按钮类 -->
+ </form>
+</div>
+{% endblock %}

@@ -8,9 +8,39 @@
         <!-- block 拥有可继承属性，使用 block 将页面划分为不同的区块 -->
         <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!-- rel 规定当前文档和被链接文档之间的关系 -->
+        <link rel="stylesheet" href="main.css">
     </head>
 
     <body>
+        <nav class="navbar navbar-inverse">
+        <!-- 添加导航条 -->
+            <div class="container">
+                <!-- Brand 和 toggle 被分组以获得更好的移动显示 -->
+                <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <!-- class:规定元素一个或多个类名；data-*:用于存储页面或应用数据的私有定制数据；aria-*:描述这个 tag 在可视化情境下的具体信息 -->
+                    <span class="sr-only">Toggle navigation</span>
+                    <!-- span:用于组合文档中的行内元素 -->
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Simpledu</a>
+                </div>
+                <!-- 收集导航链接，表格和其他内容用于切换 -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="sctive"><a href="/">课程<span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">直播</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ url_for('front.register') }}">注册</a></li>
+                    <li><a href="{{ url_for('front.login')}}">登录</a></li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+
         <div class="container">
             {% block body %}{% endblock %}
             {% block footer %}{% endblock %}
