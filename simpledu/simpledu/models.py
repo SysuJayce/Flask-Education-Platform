@@ -1,5 +1,6 @@
 # 存放数据模型相关代码
 
+from flask_login import UserMixin
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -15,7 +16,7 @@ class Base(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)  # 以上两个时间戳都不需要自己去维护
 
 
-class User(Base):  # 继承 Base 类
+class User(Base, UserMixin):  # 继承 Base 类
     __tablename__ = 'user'
     """ 用数值表示角色，方便判断是否有权限，比如某个操作要角色为员工及以上那个用户才可以做，那么只要判断 user.role >= ROLE_STAFF,数值之间间隔10是为了方便加入其他角色"""
     ROLE_USER = 10
