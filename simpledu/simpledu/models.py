@@ -1,5 +1,6 @@
 # 存放数据模型相关代码
 
+from flask import url_for
 from flask_login import UserMixin
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
@@ -57,10 +58,34 @@ class User(Base, UserMixin):  # 继承 Base 类
     def is_staff(self):
         return self.role == self.ROLE_STAFF
 
-class Course(db.Model):
+class Course(Base):
     __tablename__ = 'course'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), unique=True, index=True, nullable=False)
-    author_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'))
+    description = db.Column(db.String(256))  # 课程描述信息
+    image_url = db.Column(db.String(256))  # 课程图片的 url 地址
+    author_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='SET NULL'))
     author = db.relationship('User', uselist=False)
+    chapters = db.relationship('Chapter')
+
+    def __repr__(self):
+        return '<Course:{}>'.format(self.name)
+
+    @property   # 方便获取课程的 url
+    def url(self):
+        return url_for('course.detail', course_id=self.id)
+
+class Chapter(Base):
+    __tablename__ = 'chapter'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), unique=True, index=True)
+    description = db.Column(db.String(256))
+    vedio_url = db.Column(db.String(256))
+    vedio_duration = db.Column(db.String(24))
+    course_id = db.Column(db.Integer, db.ForeignKey('course.id', ondelete="CASCADE"))
+    course = db.relationship('Course', uselist=False)
+    
+    def __repr__(self):
+        return '<Chapter:{}>'.format(slef.name)

@@ -1,5 +1,15 @@
-.form {
-    /* 链接到 login/register.html 的 form 类中 */
-    width: 400px;
-    margin: 0 auto;
+a,
+a:hover,
+a.visited{
+    text-decoration: none !important;
+}
+
+.course__name,
+.course__description {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap
+}
+.course img {
+    height: 160px !important
 }
